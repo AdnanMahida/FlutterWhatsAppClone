@@ -1,99 +1,85 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_whatsapp/modules/home/screen/calls_screen.dart';
+import 'package:flutter_whatsapp/modules/home/screen/chat_screen.dart';
+import 'package:flutter_whatsapp/modules/home/screen/community_screen.dart';
+import 'package:flutter_whatsapp/modules/home/screen/status_screen.dart';
+import 'package:flutter_whatsapp/themes/colors_theme.dart';
 import 'package:get/get.dart';
 
-import '../../routes/app_routes.dart';
-import '../../themes/app_text_theme.dart';
-import '../../themes/colors_theme.dart';
-import '../../utils/constants.dart';
 import 'home_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final MyTabController tabController = Get.put(MyTabController());
+
     return GetBuilder<HomeController>(
-      builder: (controller) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: ThemeColor.white,
-          title: const Text('WhatsAppClone',
-              style: TextStyle(
-                  color: ThemeColor.primaryBlack, fontFamily: 'Poppins')),
-          elevation: 0,
-          actions: [
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.search, color: ThemeColor.primaryBlack))
-          ],
-        ),
-        body: controller.isLoading
-            ? const Center(child: CircularProgressIndicator())
-            : SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(15, 25, 15, 10),
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  itemCount: controller.homeList.length,
-                  physics: const ScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Get.toNamed(AppRoutes.settingScreen,
-                            arguments: [controller.homeList[index].id]);
-                      },
-                      child: Stack(
-                        children: [
-                          ClipRRect(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(12.0)),
-                            child: CachedNetworkImage(
-                              imageUrl:
-                                  imageBaseUrl,
-                              fit: BoxFit.cover,
-                              height: Get.height * 0.30,
-                              width: Get.width,
-                            ),
-                          ),
-                          Positioned(
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            child: Container(
-                              height: 60,
-                              decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.only(
-                                      bottomLeft: Radius.circular(12.0),
-                                      bottomRight: Radius.circular(12.0)),
-                                  gradient: LinearGradient(
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter,
-                                      colors: [
-                                        Colors.black.withOpacity(0.7),
-                                        Colors.transparent
-                                      ])),
-                            ),
-                          ),
-                          Positioned(
-                              bottom: 12,
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 12),
-                                child: Text(
-                                  controller.homeList[index].title,
-                                  style: poppinsRegular(
-                                      fontSize: 20,
-                                      color: ThemeColor.white,
-                                      fontWeight: FontWeight.bold),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              )),
-                        ],
-                      ),
-                    );
-                  },
-                  separatorBuilder: (BuildContext context, int index) {
-                    return const SizedBox(height: 20);
-                  },
+        builder: (controller) => Scaffold(
+              appBar: AppBar(
+                title: const Text('WhatsApp Clone'),
+                elevation: 0.7,
+                actions: [
+                  IconButton(
+                    icon: const Icon(Icons.camera_alt_outlined),
+                    onPressed: () => {},
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.search_outlined),
+                    onPressed: () => {},
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.more_vert_outlined),
+                    onPressed: () => {},
+                  ),
+                ],
+                bottom: TabBar(
+                  controller: tabController.controller,
+                  indicatorColor: Colors.white,
+                  tabs: tabController.myTabs,
                 ),
               ),
-      ),
-    );
+              body: TabBarView(
+                controller: tabController.controller,
+                children: [
+                  CommunityScreen(controller),
+                  ChatScreen(),
+                  StatusScreen(controller),
+                  CallScreen(controller)
+                ],
+              ),
+              floatingActionButton: FloatingActionButton(
+                backgroundColor: ThemeColor.primaryGreen,
+                child: const Icon(
+                  Icons.message,
+                  color: Colors.white,
+                ),
+                onPressed: () => {},
+              ),
+            ));
+  }
+}
+
+class MyTabController extends GetxController
+    with GetSingleTickerProviderStateMixin {
+  final List<Tab> myTabs = <Tab>[
+    const Tab(icon: Icon(Icons.groups)),
+    const Tab(text: 'Chats'),
+    const Tab(text: 'Status'),
+    const Tab(text: 'Calls'),
+  ];
+
+  late TabController controller;
+
+  @override
+  void onInit() {
+    super.onInit();
+    controller =
+        TabController(vsync: this, initialIndex: 1, length: myTabs.length);
+  }
+
+  @override
+  void onClose() {
+    controller.dispose();
+    super.onClose();
   }
 }

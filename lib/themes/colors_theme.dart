@@ -8,7 +8,7 @@ class ThemeColor {
   static const Color secondaryDarkGrey = Color(0xff606260);
   static const Color primaryDarkGrey = Color(0xff414141);
   static const Color primaryBlue = Color(0xFF2E2739);
-  static const Color primaryGreen = Color(0xff5EBE4E);
+  static const Color primaryGreen = Color(0xff075E54);
   static const Color primaryGrey = Colors.grey;
   static const Color secondaryBlack = Color(0xff2B2F2C);
   static const Color secondaryRed = Color(0xffE2173A);
@@ -21,14 +21,14 @@ class ThemeColor {
   ThemeData get themeData {
     ColorScheme colorSchemeThisApp = const ColorScheme(
       // primary green
-      primary: Color(0xff2E2739),
+      primary: Color(0xff075E54),
       // gradient 1
       surface: Color(0xff2E2739),
       // gradient 2
       background: Color(0xffF1F3F4),
       // secondary grey
       //secondary: Color(0xffF1F3F4),
-      secondary: Color(0xff2E2739),
+      secondary: Color(0xff25D366),
       // secondary red
       error: Color(0xffE2173A),
       // primary green

@@ -24,6 +24,6 @@ class AppPages {
       name: AppRoutes.welcomeScreen,
       page: () => WelcomeScreen(),
       binding: WelcomeBinding(),
-    ),
+    )
   ];
 }
