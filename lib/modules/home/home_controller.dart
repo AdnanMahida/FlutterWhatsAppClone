@@ -8,24 +8,7 @@ class HomeController extends GetxController {
   // HomeApi homeApi = HomeApi();
   late TabController tabController;
 
-  List<ChatModel> chatList = [
-    ChatModel(
-      id: 1,
-      title: 'John Doe',
-      message: 'Hello',
-      iconUrl:
-          'https://img.freepik.com/foto-gratis/retrato-joven-sonriente-gafas_171337-4842.jpg',
-      lastMessage: '2:00 PM',
-    ),
-    ChatModel(
-      id: 2,
-      title: 'Mark Doe',
-      message: 'How are you?',
-      iconUrl:
-          'https://www.shutterstock.com/image-photo/young-handsome-man-beard-wearing-260nw-1817367890.jpg',
-      lastMessage: '2:00 PM',
-    )
-  ];
+  List<ChatModel> chatList = [];
 
   List<HomeListModel> homeList = [];
   bool isLoading = true;
@@ -34,7 +17,7 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
     // fetchHomeList();
-    // setStaticData();
+    setStaticData();
   }
 
   @override
@@ -55,6 +38,25 @@ class HomeController extends GetxController {
         image: 'assets/images/setting.png',
         description: 'Setting Screen'));
     isLoading = false;
+
+    chatList.add(ChatModel(
+      id: 1,
+      title: 'John Doe',
+      message: 'Hello',
+      iconUrl:
+          'https://img.freepik.com/foto-gratis/retrato-joven-sonriente-gafas_171337-4842.jpg',
+      lastMessage: '2:00 PM',
+    ));
+
+    chatList.add(ChatModel(
+      id: 2,
+      title: 'Mark Doe',
+      message: 'How are you?',
+      iconUrl:
+          'https://www.shutterstock.com/image-photo/young-handsome-man-beard-wearing-260nw-1817367890.jpg',
+      lastMessage: '2:00 PM',
+    ));
+
     update();
   }
 

@@ -1,3 +1,5 @@
+import 'package:flutter_whatsapp/modules/chat/chatlist_screen.dart';
+import 'package:flutter_whatsapp/modules/chat/chat_screen_binding.dart';
 import 'package:flutter_whatsapp/modules/home/home_screen.dart';
 import 'package:flutter_whatsapp/modules/home/home_screen_binding.dart';
 import 'package:flutter_whatsapp/modules/setting/setting_screen.dart';
@@ -24,6 +26,11 @@ class AppPages {
       name: AppRoutes.welcomeScreen,
       page: () => WelcomeScreen(),
       binding: WelcomeBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.chatScreen,
+      page: () => ChatScreen(),
+      binding: ChatBinding(),
     )
   ];
 }

@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
                 controller: tabController.controller,
                 children: [
                   CommunityScreen(controller),
-                  ChatScreen(),
+                  ChatListScreen(),
                   StatusScreen(controller),
                   CallScreen(controller)
                 ],

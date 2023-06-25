@@ -3,12 +3,12 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 import '../home_controller.dart';
 
-ChatScreen() {
+ChatListScreen() {
   return GetBuilder<HomeController>(
       builder: (controller) => ListView.builder(
             itemCount: controller.chatList.length,
             itemBuilder: (BuildContext context, int index) {
-              Column(
+              return Column(
                 children: [
                   const Divider(
                     height: 10.0,

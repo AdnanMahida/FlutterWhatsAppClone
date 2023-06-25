@@ -3,10 +3,12 @@ import 'package:flutter_whatsapp/modules/home/home_screen.dart';
 import 'package:flutter_whatsapp/routes/app_pages.dart';
 import 'package:flutter_whatsapp/themes/colors_theme.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'modules/home/home_screen_binding.dart';
 
-void main() {
+void main() async{
+  await GetStorage.init();   // storage initialization
   runApp(const MyApp());
 }
 
