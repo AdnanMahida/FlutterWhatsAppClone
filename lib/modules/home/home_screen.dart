@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_whatsapp/modules/home/screen/calls_screen.dart';
-import 'package:flutter_whatsapp/modules/home/screen/chat_screen.dart';
+import 'package:flutter_whatsapp/modules/home/screen/chatlist_screen.dart';
 import 'package:flutter_whatsapp/modules/home/screen/community_screen.dart';
 import 'package:flutter_whatsapp/modules/home/screen/status_screen.dart';
 import 'package:flutter_whatsapp/routes/app_routes.dart';
@@ -28,48 +28,59 @@ class HomeScreen extends StatelessWidget {
                     icon: const Icon(Icons.search_outlined),
                     onPressed: () => {},
                   ),
-                  PopupMenuButton(itemBuilder: (context) {
-                    return [
-                      const PopupMenuItem<int>(
-                        value: 0,
-                        child: Text("New group"),
-                      ),
-                      const PopupMenuItem<int>(
-                        value: 1,
-                        child: Text("New Broadcast"),
-                      ),
-                      const PopupMenuItem<int>(
-                        value: 2,
-                        child: Text("Linked devices"),
-                      ),
-                      const PopupMenuItem<int>(
-                        value: 3,
-                        child: Text("Starred messages"),
-                      ),
-                      const PopupMenuItem<int>(
-                        value: 4,
-                        child: Text("Payments"),
-                      ),
-                      const PopupMenuItem<int>(
-                        value: 5,
-                        child: Text("Settings"),
-                      ),
-                    ];
-                  }, onSelected: (value) {
-                    if (value == 0) {
-                      print("New group menu is selected.");
-                    } else if (value == 1) {
-                      print("New Broadcast menu is selected.");
-                    } else if (value == 2) {
-                      print("Linked devices menu is selected.");
-                    } else if (value == 3) {
-                      print("Starred message menu is selected.");
-                    } else if (value == 4) {
-                      print("Payment menu is selected.");
-                    } else if (value == 5) {
-                      Get.toNamed(AppRoutes.settingScreen);
-                    }
-                  }),
+                  Theme(
+                    data: Theme.of(context).copyWith(
+                      cardColor: ThemeColor.white,
+                    ),
+                    child: PopupMenuButton(
+                        icon: const Icon(
+                          Icons.more_vert,
+                          color: Colors.white,
+                        ),
+                        itemBuilder: (context) {
+                          return [
+                            const PopupMenuItem<int>(
+                              value: 0,
+                              child: Text("New group"),
+                            ),
+                            const PopupMenuItem<int>(
+                              value: 1,
+                              child: Text("New Broadcast"),
+                            ),
+                            const PopupMenuItem<int>(
+                              value: 2,
+                              child: Text("Linked devices"),
+                            ),
+                            const PopupMenuItem<int>(
+                              value: 3,
+                              child: Text("Starred messages"),
+                            ),
+                            const PopupMenuItem<int>(
+                              value: 4,
+                              child: Text("Payments"),
+                            ),
+                            const PopupMenuItem<int>(
+                              value: 5,
+                              child: Text("Settings"),
+                            ),
+                          ];
+                        },
+                        onSelected: (value) {
+                          if (value == 0) {
+                            print("New group menu is selected.");
+                          } else if (value == 1) {
+                            print("New Broadcast menu is selected.");
+                          } else if (value == 2) {
+                            print("Linked devices menu is selected.");
+                          } else if (value == 3) {
+                            print("Starred message menu is selected.");
+                          } else if (value == 4) {
+                            print("Payment menu is selected.");
+                          } else if (value == 5) {
+                            Get.toNamed(AppRoutes.settingScreen);
+                          }
+                        }),
+                  ),
                 ],
                 bottom: TabBar(
                   controller: tabController.controller,
@@ -88,10 +99,9 @@ class HomeScreen extends StatelessWidget {
               ),
               floatingActionButton: FloatingActionButton(
                 backgroundColor: ThemeColor.primaryGreen,
-                child: const Icon(
-                  Icons.message,
-                  color: Colors.white,
-                ),
+                child: tabController.controller.index == 1
+                    ? const Icon(Icons.message,color: Colors.white,)
+                    : const Icon(Icons.camera_alt,color: Colors.white,),
                 onPressed: () => {},
               ),
             ));
@@ -114,6 +124,7 @@ class MyTabController extends GetxController
     super.onInit();
     controller =
         TabController(vsync: this, initialIndex: 1, length: myTabs.length);
+
   }
 
   @override

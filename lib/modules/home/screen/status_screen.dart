@@ -1,14 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
+import '../../../themes/colors_theme.dart';
 import '../home_controller.dart';
 
 StatusScreen(HomeController controller) {
   return GetBuilder<HomeController>(
       builder: (controller) => ListView.builder(
-        itemCount: controller.chatList.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Column(
+            itemCount: 1,
+            itemBuilder: (BuildContext context, int index) {
+              return ListTile(
+                leading: Stack(
+                  children: <Widget>[
+                    CircleAvatar(
+                      radius: 20,
+                      backgroundImage: NetworkImage(
+                          "https://www.shutterstock.com/image-photo/young-handsome-man-beard-wearing-260nw-1817367890.jpg"),
+                    ),
+                    const Positioned(
+                      right: 0.0,
+                      bottom: 0.0,
+                      child: CircleAvatar(
+                        radius: 10.0,
+                        backgroundColor: ThemeColor.primaryGreen,
+                        child: Icon(
+                          Icons.add,
+                          size: 20.0,
+                          color: ThemeColor.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                title: Text('My status'),
+                subtitle: Text('Tap to add status update'),
+              );
+              /* return Column(
             children: [
               ListTile(
                 leading: CircleAvatar(
@@ -44,8 +71,7 @@ StatusScreen(HomeController controller) {
                 height: 10.0,
               ),
             ],
-          );
-        },
-      ));
-
+          );*/
+            },
+          ));
 }

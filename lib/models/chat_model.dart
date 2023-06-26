@@ -5,6 +5,7 @@ class ChatModel {
   String iconUrl;
   String lastMessage;
   String time = DateTime.now().toString();
+  bool isGroup = false;
 
   ChatModel({
     required this.id,

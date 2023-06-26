@@ -1,6 +1,6 @@
 # flutter_whatsapp
 
-A new flutter WhatsApp
+A new flutter WhatsApp Clone application.
 
 ## Getting Started
 

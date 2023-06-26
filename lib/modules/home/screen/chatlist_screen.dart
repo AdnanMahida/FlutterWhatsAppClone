@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:flutter_whatsapp/routes/app_routes.dart';
+import 'package:get/get.dart';
 
 import '../home_controller.dart';
 
@@ -42,6 +43,11 @@ ChatListScreen() {
                             const TextStyle(color: Colors.grey, fontSize: 15.0),
                       ),
                     ),
+                    onTap: () {
+                      controller.chatList[index].isGroup
+                          ? Get.toNamed('/groupchat')
+                          : Get.toNamed(AppRoutes.chatScreen);
+                    },
                   ),
                 ],
               );

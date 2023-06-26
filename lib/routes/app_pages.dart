@@ -1,4 +1,3 @@
-import 'package:flutter_whatsapp/modules/chat/chatlist_screen.dart';
 import 'package:flutter_whatsapp/modules/chat/chat_screen_binding.dart';
 import 'package:flutter_whatsapp/modules/home/home_screen.dart';
 import 'package:flutter_whatsapp/modules/home/home_screen_binding.dart';
@@ -8,6 +7,7 @@ import 'package:flutter_whatsapp/modules/welcome/welcome_screen.dart';
 import 'package:flutter_whatsapp/modules/welcome/welcome_screen_binding.dart';
 import 'package:get/get.dart';
 
+import '../modules/chat/chat_screen.dart';
 import 'app_routes.dart';
 
 class AppPages {
