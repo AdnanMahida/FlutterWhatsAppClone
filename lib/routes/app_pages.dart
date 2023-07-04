@@ -1,4 +1,4 @@
-import 'package:flutter_whatsapp/modules/chat/chat_screen_binding.dart';
+import 'package:flutter_whatsapp/modules/chat/chat_info_screen_binding.dart';
 import 'package:flutter_whatsapp/modules/home/home_screen.dart';
 import 'package:flutter_whatsapp/modules/home/home_screen_binding.dart';
 import 'package:flutter_whatsapp/modules/setting/setting_screen.dart';
@@ -7,7 +7,9 @@ import 'package:flutter_whatsapp/modules/welcome/welcome_screen.dart';
 import 'package:flutter_whatsapp/modules/welcome/welcome_screen_binding.dart';
 import 'package:get/get.dart';
 
-import '../modules/chat/chat_screen.dart';
+import '../modules/chat/chat_info_screen.dart';
+import '../modules/chat_info/chat_screen.dart';
+import '../modules/chat_info/chat_screen_binding.dart';
 import 'app_routes.dart';
 
 class AppPages {
@@ -31,6 +33,11 @@ class AppPages {
       name: AppRoutes.chatScreen,
       page: () => ChatScreen(),
       binding: ChatBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.chatScreen,
+      page: () => ChatInfoScreen(),
+      binding: ChatInfoBinding(),
     )
   ];
 }

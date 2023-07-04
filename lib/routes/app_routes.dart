@@ -3,4 +3,5 @@ class AppRoutes {
   static const settingScreen = '/settingScreen';
   static const welcomeScreen = '/welcomeScreen';
   static const chatScreen = '/chatScreen';
+  static const chatInfoScreen = '/chatInfoScreen';
 }
